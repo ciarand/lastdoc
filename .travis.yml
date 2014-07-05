@@ -13,4 +13,4 @@ install:
   - sudo luarocks install luafilesystem
   - sudo luarocks install busted
 
-script: "busted"
+script: "busted spec"
