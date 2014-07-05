@@ -3,3 +3,7 @@ Lastdoc
 
 [quote]
 A complete nonfunctional implementation of the Asciidoc standard in Lua
+
+image:https://travis-ci.org/ciarand/lastdoc.svg?branch=master[
+    "Build Status",
+    link="https://travis-ci.org/ciarand/lastdoc"]
