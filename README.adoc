@@ -1,4 +1,5 @@
 Lastdoc
 =======
+
 [quote]
 A complete nonfunctional implementation of the Asciidoc standard in Lua
