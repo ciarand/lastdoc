@@ -27,6 +27,10 @@ local blanklines     = blankline^0
 local line           = linechar^0 * newline + linechar^1 * eof
 local nonemptyline   = line - blankline
 
+local chomp = function(s)
+    return s:gsub("(.-)%s*$", "%1")
+end
+
 exports.headerNode = function(str, level)
     if level == nil then l = 1
     elseif level > 6 then l = 6
@@ -42,7 +46,7 @@ exports.parseHeaderNode = function(str)
                 * C(line - newline)
                 * HeadingLevel
                 * optionalspace * newline^0
-                / function(s, l) return { title = s:gsub("(.-)%s*$", "%1"), level = l } end
+                / function(s, l) return { title = chomp(s), level = l } end
 
     local res = lpeg.match(rules, str)
     if res ~= nil then
