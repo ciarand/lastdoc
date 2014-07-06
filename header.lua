@@ -1,4 +1,4 @@
-local lpeg    = require "lpeg"
+local lpeg = require "lpeg"
 
 local P, R, S, V, C, Cg, Cb, Cmt, Cc, Cf, Ct, B, Cs =
   lpeg.P, lpeg.R, lpeg.S, lpeg.V, lpeg.C, lpeg.Cg, lpeg.Cb,
