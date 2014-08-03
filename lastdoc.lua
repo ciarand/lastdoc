@@ -6,7 +6,6 @@ local gen_doc = function(str)
     exp.content = str
 
     exp.lines = utils.split(exp.content, "\n")
-    -- there's always at least one line here
     exp.count = #exp.lines
 
     exp.line = function(i)
@@ -49,7 +48,19 @@ local title = function(doc)
     end
 end
 
+local author = function(doc)
+    local fname, mname, lname, email = doc.line(1):match("([%w_]+)")
+
+    return {
+        first_name = fname,
+        middle_name = mname,
+        last_name = lname,
+        email = email,
+    }
+end
+
 return {
     gen   = gen_doc,
     title = title,
+    author = author,
 }
