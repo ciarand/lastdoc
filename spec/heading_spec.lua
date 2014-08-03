@@ -57,25 +57,36 @@ describe("the heading parsing stuff", function()
 
     describe("author info", function()
         it("should parse a first name", function()
-            assert.is.same(author("John"),
-                { first_name = "John" })
+            assert.is.same({
+                    first_name = "John",
+                    middle_name = nil,
+                    last_name = nil,
+                    email = nil,
+                }, author("John"))
         end)
-        pending("should parse a first and last name", function()
-            assert.is.same(author("John Smith"),
-                { first_name = "John", last_name = "Smith" })
+        it("should parse a first and last name", function()
+            assert.is.same({
+                    first_name = "John",
+                    middle_name = nil,
+                    last_name = "Smith",
+                    email = nil,
+                }, author("John Smith"))
         end)
-        pending("should parse a first, middle, and last name", function()
-            assert.is.same(author("John Danger Smith"),
-                { first_name = "John", middle_name = "Danger", last_name = "Smith" })
+        it("should parse a first, middle, and last name", function()
+            assert.is.same({
+                    first_name = "John",
+                    middle_name = "Danger",
+                    last_name = "Smith",
+                    email = nil,
+                }, author("John Danger Smith"))
         end)
-        pending("should parse a first name and email", function()
-            assert.is.same(author("John Danger Smith <john@example.com>"),
-                {
+        it("should parse a first name and email", function()
+            assert.is.same({
                     first_name = "John",
                     middle_name = "Danger",
                     last_name = "Smith",
                     email = "john@example.com",
-                })
+                }, author("John Danger Smith <john@example.com>"))
         end)
     end)
 end)

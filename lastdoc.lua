@@ -49,13 +49,18 @@ local title = function(doc)
 end
 
 local author = function(doc)
-    local fname, mname, lname, email = doc.line(1):match("([%w_]+)")
+    local fname, mname, lname, email = doc.line(1):match("([%w_]+) ?([%w_]*) ?([%w_]*) ?<?([^%s<>]*)>?")
+
+    if lname == "" and mname ~= "" then
+        lname = mname
+        mname = ""
+    end
 
     return {
-        first_name = fname,
-        middle_name = mname,
-        last_name = lname,
-        email = email,
+        first_name  = utils.getor(fname, nil),
+        middle_name = utils.getor(mname, nil),
+        last_name   = utils.getor(lname, nil),
+        email       = utils.getor(email, nil),
     }
 end
 

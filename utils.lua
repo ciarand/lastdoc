@@ -26,7 +26,16 @@ local trim = function(s)
     return s:match'^()%s*$' and '' or s:match'^%s*(.*%S)'
 end
 
+local getor = function(str, default)
+    if str == nil or str == "" then
+        return default
+    end
+
+    return str
+end
+
 return {
     split = split,
-    trim = trim,
+    trim  = trim,
+    getor = getor,
 }
