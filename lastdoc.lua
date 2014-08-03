@@ -56,11 +56,15 @@ local author = function(doc)
         mname = ""
     end
 
+    local dash_to_space = function(str)
+        return str:gsub("_", " ")
+    end
+
     return {
-        first_name  = utils.getor(fname, nil),
-        middle_name = utils.getor(mname, nil),
-        last_name   = utils.getor(lname, nil),
-        email       = utils.getor(email, nil),
+        first_name  = utils.getor(dash_to_space(fname), nil),
+        middle_name = utils.getor(dash_to_space(mname), nil),
+        last_name   = utils.getor(dash_to_space(lname), nil),
+        email       = utils.getor(dash_to_space(email), nil),
     }
 end
 
