@@ -69,8 +69,16 @@ local author = function(doc)
     }
 end
 
+local block = function(doc)
+    return {
+        header = nil,
+        body = "",
+    }
+end
+
 return {
-    gen   = gen_doc,
-    title = title,
+    gen    = gen_doc,
+    title  = title,
+    block  = block,
     author = author,
 }
