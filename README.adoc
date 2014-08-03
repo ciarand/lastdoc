@@ -6,3 +6,5 @@ A complete nonfunctional implementation of the Asciidoc standard in Lua
 
 image:http://img.shields.io/travis/ciarand/lastdoc/master.svg?style=flat[
     "Build Status", link="https://travis-ci.org/ciarand/lastdoc"]
+image:http://img.shields.io/coveralls/ciarand/lastdoc.svg?style=flat[
+    "Build Status", link="https://coveralls.io/r/ciarand/lastdoc"]
