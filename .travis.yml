@@ -7,7 +7,6 @@ branches:
   - master
 install:
 - sudo apt-get install luajit luarocks
-- sudo luarocks install lpeg
 - sudo luarocks install luafilesystem
 - sudo luarocks install busted 1.11.1
 script: busted spec
