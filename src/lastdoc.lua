@@ -42,10 +42,7 @@ local one_line_title = function(doc)
 end
 
 local title = function(doc)
-    -- if we don't even have a line, just die
-    if doc.count < 1 then
-        return nil
-    elseif doc.count == 1 then
+    if doc.count == 1 then
         return one_line_title(doc)
     else
         return two_line_title(doc)
