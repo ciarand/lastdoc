@@ -1,15 +1,20 @@
 language: erlang
+
 env:
-- LUA=""
-- LUA="luajit"
-branches:
-  only:
-  - master
+  - LUA=""
+  - LUA="luajit"
+
 install:
-- sudo apt-get install luajit luarocks
-- sudo luarocks install luafilesystem
-- sudo luarocks install busted 1.11.1
-script: busted spec
+  - sudo apt-get install luajit luarocks
+  - sudo luarocks install luafilesystem
+  - sudo luarocks install busted 1.11.1
+  - sudo luarocks install luacov-coveralls --server=http://rocks.moonscript.org/dev
+
+script: busted -c
+
+after_success:
+    - luacov-coveralls
+
 notifications:
   slack:
     secure: GWQZ2CUaBYUZTTHXCkSG7A3L8kRJsHRfkAHZ0+V1RAFzcxb7eCCizMaRHSnRXM/YTaCvGORWYSzftLrkqQIk84RSl4Uru5B4cypJ3ArjNFAph+rue00+jbhYdJO8cq5OoLZRal/LCoEnjKO723CVhlScxz8/rSY/eSvaGUJJkb0=
