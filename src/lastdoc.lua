@@ -34,7 +34,11 @@ local two_line_title = function(doc)
 end
 
 local one_line_title = function(doc)
-    return utils.trim(doc.line(1):match("= ?([^=]+)=?"))
+    local res = doc.line(1):match("= ?([^=]+)=?")
+
+    if res == nil then return end
+
+    return utils.trim(res)
 end
 
 local title = function(doc)
