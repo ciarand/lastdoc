@@ -1,6 +1,6 @@
 local splitter = function(s, sep)
     local exp = {}
-    local i = 0
+    local i = 1
     local cur = 0
     local pos = nil
 
@@ -22,12 +22,17 @@ local splitter = function(s, sep)
     return exp
 end
 
+local trim = function(s)
+    return s:match'^()%s*$' and '' or s:match'^%s*(.*%S)'
+end
+
 local gen_doc = function(str)
     local exp = {}
 
     exp.content = str
 
     exp.lines = splitter(exp.content, "\n")
+    -- there's always at least one line here
     exp.count = #exp.lines
 
     exp.line = function(i)
@@ -37,13 +42,9 @@ local gen_doc = function(str)
     return exp
 end
 
-local title = function(doc)
-    if doc.count < 1 then
-        return nil
-    end
-
-    local str = doc.line(0)
-    local dec = doc.line(1)
+local two_line_title = function(doc)
+    local str = doc.line(1)
+    local dec = doc.line(2)
 
     local str_len = str:len()
     local dec_len = dec:len()
@@ -57,6 +58,21 @@ local title = function(doc)
     end
 
     return str
+end
+
+local one_line_title = function(doc)
+    return trim(doc.line(1):match("= ?([^=]+)=?"))
+end
+
+local title = function(doc)
+    -- if we don't even have a line, just die
+    if doc.count < 1 then
+        return nil
+    elseif doc.count == 1 then
+        return one_line_title(doc)
+    else
+        return two_line_title(doc)
+    end
 end
 
 return {
